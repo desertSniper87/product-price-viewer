@@ -13,6 +13,7 @@ const Prices = () => {
         tempData.push([textInput, priceInput]);
         setPriceData(tempData);
         setTextInput("");
+        setPriceInput("");
     }
 
     console.table(priceData);
