@@ -3,18 +3,19 @@ import {Link} from 'react-router-dom';
 
 const Prices = () => {
     const [priceData, setPriceData] = useState([]);
-    const [textInput, setTextInput, priceInput, setPriceInput] = useState("");
+    const [textInput, setTextInput] = useState("");
+    const [priceInput, setPriceInput] = useState("");
 
     const addItem = (e) => {
         e.preventDefault();
 
         const tempData = [...priceData];
-        tempData.push(textInput);
+        tempData.push([textInput, priceInput]);
         setPriceData(tempData);
         setTextInput("");
     }
 
-    console.log(priceData);
+    console.table(priceData);
 
     return (
         <div>
@@ -24,9 +25,9 @@ const Prices = () => {
                 <label>
                     Item: <input type="text" value={textInput} onChange={(e) => setTextInput(e.target.value)}></input>
                 </label>
-                {/* <label>
-                    Price: <input type="number" value={priceInput} onChange={(e) => setTextInput(e.target.value)}/>
-                </label> */}
+                <label>
+                    Price: <input type="number" value={priceInput} onChange={(e) => setPriceInput(e.target.value)}/>
+                </label>
                 <input type="submit" value="Submit"></input>
             </form>
         </div>
