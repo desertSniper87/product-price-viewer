@@ -1,12 +1,34 @@
-import React from "react";
-import Link from 'react-router-dom';
+import React, {useState} from "react";
+import {Link} from 'react-router-dom';
 
 const Prices = () => {
+    const [priceData, setPriceData] = useState([]);
+    const [textInput, setTextInput, priceInput, setPriceInput] = useState("");
+
+    const addItem = (e) => {
+        e.preventDefault();
+
+        const tempData = [...priceData];
+        tempData.push(textInput);
+        setPriceData(tempData);
+        setTextInput("");
+    }
+
+    console.log(priceData);
+
     return (
         <div>
             <h1> Prices </h1>
-
-            <Link to="/prices">Prices</Link>
+            <Link to="/">Home</Link>
+            <form onSubmit={addItem}>
+                <label>
+                    Item: <input type="text" value={textInput} onChange={(e) => setTextInput(e.target.value)}></input>
+                </label>
+                {/* <label>
+                    Price: <input type="number" value={priceInput} onChange={(e) => setTextInput(e.target.value)}/>
+                </label> */}
+                <input type="submit" value="Submit"></input>
+            </form>
         </div>
     );
 }
