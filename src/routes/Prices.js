@@ -28,6 +28,13 @@ const Prices = () => {
 
     }, [textInput, priceInput])
 
+    const removeItem = (index) => {
+        let newData = [...priceData];
+        newData.splice(index, 1);
+        setPriceData(newData);
+
+    }
+
     return (
         <div>
             <h1> Prices </h1>
@@ -42,6 +49,14 @@ const Prices = () => {
                 <input type="submit" value="Submit"></input>
             </form>
             {error ? <span style = {{color: "red"}}>Error occured</span> : null}
+            {
+                priceData.map((item, index) => {
+                    return (
+                        <li key={index}>{item} <button onClick={() => removeItem(index)}>Remove</button></li>
+                    )
+
+                })
+            }
         </div>
     );
 }
